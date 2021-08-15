@@ -1,13 +1,14 @@
-const router = require("express").Router();
+const { randomize } = require("../utility/randomizeFunction");
 
+const router = require("express").Router();
+require("../utility/randomizeFunction");
 router.route("/").get((req, res) => {
   res.render("index", { title: "word randomizer" });
 });
 
-router.route("/process").post((req, res) => {
+router.route("/").post((req, res) => {
   let word = req.body.word;
-  const arr = word.split("");
-  console.log(arr);
+  randomize(word);
 
   res.send(word);
 });
