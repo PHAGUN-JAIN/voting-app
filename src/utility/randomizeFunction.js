@@ -1,7 +1,7 @@
-const randomize = function (word) {
+function randomize(word) {
   const arr = word.split("");
   console.log(arr);
   return arr;
-};
+}
 
-module.exports = {randomize};
+module.exports = { randomize };
