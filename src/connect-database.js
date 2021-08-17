@@ -21,7 +21,11 @@ async function run() {
   console.log(rs);
 
   await client.shutdown();
+
+  return rs;
 }
 
 // Run the async function
 run();
+
+module.exports = { run };
