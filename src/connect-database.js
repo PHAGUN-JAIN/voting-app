@@ -1,7 +1,6 @@
 require("dotenv").config();
 const { Client } = require("cassandra-driver");
 
-let rs;
 
 async function run() {
   const client = new Client({
@@ -18,7 +17,7 @@ async function run() {
   await client.connect();
 
   // Execute a query
-  rs = await client.execute("SELECT * FROM test.user");
+  let rs = await client.execute("SELECT * FROM test.user");
   // console.log(`Your cluster returned ${rs.rowLength} row(s)`);
   // console.log(rs);
 
@@ -28,6 +27,6 @@ async function run() {
 }
 
 // Run the async function
-run();
+// run();
 
 module.exports = { run };
