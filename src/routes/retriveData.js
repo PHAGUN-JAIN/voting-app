@@ -26,22 +26,32 @@ router.route("/").get(async (req, res) => {
 });
 
 router.route("/").post(async (req, res) => {
-  console.log(`data adding ${req.params.usr_id}`);
-  await client.connect();
-  await client
-    .execute(
-      "INSERT INTO test.user" + "(usr_id, age, name)VALUES(?,?,?)",
-      [req.params.usr_id, req.params.age, req.params.usr_name],
-      { prepare: true }
-    )
-    .then((result) => {
-      res.json({ usr_id, age, usr_name });
-    })
-    .catch((error) => {
-      console.log("Cant add record: ", error);
-      res.status(500).json({ error: "Cant add record: " });
-    });
-  await client.shutdown();
+  // console.log(typeof req.body.usr_id);
+  // console.log(typeof req.body.age);
+  // console.log(typeof req.body.usr_name);
+
+  console.log(typeof(req.query.usr_id));
+
+  // let usr_id = req.body.usr_id;
+  // let age = req.body.age;
+  // let usr_name = req.body.usr_name;
+  // await client.connect();
+
+  // await client
+  //   .execute(
+  //     "INSERT INTO test.user (usr_id, age, name)VALUES(?,?,?)",
+  //     [req.params.usr_id, req.body.age, req.body.usr_name],
+  //     { prepare: true }
+  //   )
+  //   .then((result) => {
+  //     res.json({ usr_id, age, usr_name });
+  //   })
+  //   .catch((error) => {
+  //     console.log("Cant add record: ", error);
+  //     res.status(500).json({ error: "Cant add record: " });
+  //   });
+
+  // await client.shutdown();
 });
 
 module.exports = router;
