@@ -25,12 +25,16 @@ router.route("/").get(async (req, res) => {
   res.end();
 });
 
+router.route("/data").get((req, res) => {
+  res.render("database");
+});
+
 router.route("/").post(async (req, res) => {
   // console.log(typeof req.body.usr_id);
   // console.log(typeof req.body.age);
   // console.log(typeof req.body.usr_name);
 
-  console.log(typeof(req.query.usr_id));
+  console.log(typeof req.query.usr_id);
 
   // let usr_id = req.body.usr_id;
   // let age = req.body.age;
