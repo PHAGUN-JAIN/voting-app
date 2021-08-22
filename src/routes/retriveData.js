@@ -31,12 +31,12 @@ router.route("/postdata").get((req, res) => {
 });
 
 router.route("/").post(async (req, res) => {
-  console.log(typeof req.body.usr_id);
-  console.log(typeof req.body.age);
-  console.log(typeof req.body.usr_name);
+  // console.log(typeof req.body.usr_id);
+  // console.log(typeof req.body.age);
+  // console.log(typeof req.body.usr_name);
 
   // console.log(typeof req.query.usr_id);
-
+  console.log(res);
   // let usr_id = req.body.usr_id;
   // let age = req.body.age;
   // let usr_name = req.body.usr_name;
