@@ -16,7 +16,7 @@ const client = new Client({
 
 router.route("/").get(async (req, res) => {
   const rs = await connector.run();
-  console.log(rs);
+  // console.log(rs);
   // res.status(200).write(JSON.stringify(rs.rows));
   for (var i = 0; i < rs.rowLength; i++) {
     res.status(200).write(JSON.stringify(rs.rows[i]));
@@ -25,22 +25,38 @@ router.route("/").get(async (req, res) => {
   res.end();
 });
 
+router.route("/postdata").get((req, res) => {
+  // res.render("database");
+  res.sendFile(__dirname + "/static/index.html");
+});
+
 router.route("/").post(async (req, res) => {
-  console.log(`data adding ${req.params.usr_id}`);
+  // console.log(typeof req.body.usr_id);
+  // console.log(typeof req.body.age);
+  // console.log(typeof req.body.usr_name);
+
+  // console.log(typeof req.query.usr_id);
+  console.log(res);
+  // let usr_id = req.body.usr_id;
+  // let age = req.body.age;
+  // let usr_name = req.body.usr_name;
   await client.connect();
+
   await client
     .execute(
-      "INSERT INTO test.user" + "(usr_id, age, name)VALUES(?,?,?)",
-      [req.params.usr_id, req.params.age, req.params.usr_name],
+      "INSERT INTO test.user (usr_id, age, name)VALUES(?,?,?)",
+      [req.body.usr_id, req.body.age, req.body.usr_name],
       { prepare: true }
     )
     .then((result) => {
-      res.json({ usr_id, age, usr_name });
+      res.send(result);
+      // res.json({ result });
     })
     .catch((error) => {
       console.log("Cant add record: ", error);
       res.status(500).json({ error: "Cant add record: " });
     });
+
   await client.shutdown();
 });
 
