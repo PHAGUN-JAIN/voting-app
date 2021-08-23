@@ -26,14 +26,14 @@ router.route("/").get(async (req, res) => {
 });
 
 router.route("/postdata").get((req, res) => {
-  // res.render("database");
-  res.sendFile(__dirname + "/static/index.html");
+  res.render("database");
+  // res.sendFile("../public/static/index.html");
 });
 
 router.route("/").post(async (req, res) => {
-  console.log(typeof req.body.usr_id);
-  console.log(typeof req.body.age);
-  console.log(typeof req.body.usr_name);
+  // console.log(typeof req.body.usr_id);
+  // console.log(typeof req.body.age);
+  // console.log(typeof req.body.usr_name);
 
   // console.log(typeof req.query.usr_id);
   // console.log(req);

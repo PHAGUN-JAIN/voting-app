@@ -7,6 +7,8 @@ const routes = require("./routes");
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
+app.use(express.static(__dirname + "/public/static"));
+
 app.use(
   express.urlencoded({
     extended: true,
