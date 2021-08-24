@@ -33,21 +33,15 @@ router.route("/castvote").post(async (req, res) => {
 
   // await client.shutdown();
 
-  // if (rs.rows === null) {
-  //   res.send("YOU MY FREN IS NOT ALLOWED TO VOTE! BISSHHHH");
-  // } else {
-  //   if (rs.rows[0].status === "v") {
-  //     res.send("You have Already Voted");
-  //   } else if (rs.rows[0].status === "n") {
-  //     res.send("YOU CAN VOTE");
-  //   }
-  // }
-
   if (rs.rowLength === 0) {
     res.send("YOU MY FREN IS NOT ALLOWED TO VOTE! BISSHHHH");
   } else {
     if (rs.rows[0].status === "v") {
-      res.send("You have Already Voted");
+      res.render("votingarena", {
+        title: "this is arena",
+        result: "you have casted your vote",
+      });
+      // res.send("You have Already Voted");
     }
 
     if (rs.rows[0].status === "n") {
@@ -70,9 +64,9 @@ router.route("/castvote").post(async (req, res) => {
   res.end();
 });
 
-router.route("/arena").get((req, res) => {
-  res.render("votingarena", { title: "this is arena" });
-});
+// router.route("/arena").get((req, res) => {
+//   res.render("votingarena", { title: "this is arena" });
+// });
 
 router.route("/retrive").get(async (req, res) => {
   await client.connect();
