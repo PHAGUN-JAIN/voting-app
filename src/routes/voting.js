@@ -70,6 +70,10 @@ router.route("/castvote").post(async (req, res) => {
   res.end();
 });
 
+router.route("/arena").get((req, res) => {
+  res.render("votingarena", { title: "this is arena" });
+});
+
 router.route("/retrive").get(async (req, res) => {
   await client.connect();
 

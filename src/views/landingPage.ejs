@@ -18,14 +18,14 @@
             <!-- <button onclick="window.location.href='http://localhost:3000/voting/retrive';">
                 GET STARTED
             </button> -->
-            <button onclick="handleClick()">
+            <button id="btn" onclick="handleClick()">
                 GET STARTED
             </button>
             <form id="form" action="http://localhost:3000/voting/castvote" method="post">
                 <input type="email" name="email" id="email" placeholder="email">
                 <input type="text" name="name" placeholder="full name">
                 <input type="number" name="sap" placeholder="sapID">
-                <input type="submit" value="SUBMIT">
+                <input type="submit" value="PROCEED">
             </form>
         </div>
         <img src="../public/assets/images/illus.svg" alt="illustration">
@@ -33,6 +33,7 @@
 
     <script>
         function handleClick() {
+            document.getElementById("btn").style.display = "none";
             document.getElementById("form").style.display = "block";
         }
     </script>
