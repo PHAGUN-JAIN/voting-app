@@ -14,7 +14,11 @@ const client = new Client({
 });
 
 router.route("/").get((req, res) => {
-  res.status(200).write("hello WIP here");
+  res.render("landingPage");
+  res.end();
+});
+router.route("/castvote").post((req, res) => {
+  res.write(req.body.name);
   res.end();
 });
 router.route("/retrive").get(async (req, res) => {
