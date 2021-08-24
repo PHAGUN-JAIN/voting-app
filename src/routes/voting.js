@@ -34,7 +34,7 @@ router.route("/castvote").post(async (req, res) => {
   // await client.shutdown();
 
   if (rs.rowLength === 0) {
-    res.send("YOU MY FREN IS NOT ALLOWED TO VOTE! BISSHHHH");
+    res.send("YOU MY FREN IS NOT REGISTERED, KINDLY CONTACT THE DEVELOPIER");
   } else {
     if (rs.rows[0].status === "v") {
       res.render("votingarena", {
@@ -45,10 +45,13 @@ router.route("/castvote").post(async (req, res) => {
     }
 
     if (rs.rows[0].status === "n") {
-      await client.execute("UPDATE voting set status='v' where sap=?", [sap], {
-        prepare: true,
+      // await client.execute("UPDATE voting set status='v' where sap=?", [sap], {
+      //   prepare: true,
+      // });
+      res.render("votingarena", {
+        title: "this is arena",
+        result: "you have not yet casted your vote",
       });
-      res.send("Your vote has been recorded");
     }
   }
 
