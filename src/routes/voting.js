@@ -20,8 +20,11 @@ router.route("/").get((req, res) => {
 
 router.route("/castvote").post(async (req, res) => {
   await client.connect();
+
   let sap = req.body.sap;
+
   const query = "SELECT * FROM test.voting WHERE sap=?";
+
   let rs = await client
     .execute(query, [sap], {
       prepare: true,
@@ -31,25 +34,38 @@ router.route("/castvote").post(async (req, res) => {
       res.status(500).json({ error: "Cant add record: " });
     });
 
-  // await client.shutdown();
-
   if (rs.rowLength === 0) {
     res.send("YOU MY FREN IS NOT REGISTERED, KINDLY CONTACT THE DEVELOPIER");
   } else {
     if (rs.rows[0].status === "v") {
-      res.send("hello!");
+      res.send("You have already voted");
       res.end();
-      // res.send("You have Already Voted");
     }
-
     if (rs.rows[0].status === "n") {
-      // await client.execute("UPDATE voting set status='v' where sap=?", [sap], {
-      //   prepare: true,
-      // });
-      res.render("votingarena", {
-        title: "this is arena",
-        result: "you have not yet casted your vote",
-      });
+      await client.execute(
+        "UPDATE test.voting SET status='v' WHERE sap=?",
+        [sap],
+        {
+          prepare: true,
+        }
+      );
+
+      const candidates_votes = await client.execute(
+        "SELECT * from test.candidates where id =?",
+        [req.body.candidateid],
+        { prepare: true }
+      );
+
+      let update_vote = candidates_votes.rows[0].vote + 1;
+
+      await client.execute(
+        "UPDATE test.candidates SET votes=? WHERE id=?",
+        [update_vote, req.body.candidateid],
+        { prepare: true }
+      );
+
+      res.send("your vote has been recorded! CHEERS!!!");
+      res.end();
     }
   }
 
@@ -62,6 +78,7 @@ router.route("/castvote").post(async (req, res) => {
   // }
 
   // res.send(rs.rows[0].status);
+
   res.end();
 });
 
@@ -72,10 +89,10 @@ router.route("/arena").get(async (req, res) => {
   console.log(rs.rows);
 
   res.render("votingarena", {
-    vote1: rs.rows[0].votes,
+    vote1: rs.rows[0].vote,
     id1: rs.rows[0].id,
     name1: rs.rows[0].name,
-    vote2: rs.rows[1].votes,
+    vote2: rs.rows[1].vote,
     id2: rs.rows[1].id,
     name2: rs.rows[1].name,
   });
