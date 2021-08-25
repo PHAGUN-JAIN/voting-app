@@ -21,12 +21,7 @@
             <button id="btn" onclick="handleClick()">
                 GET STARTED
             </button>
-            <form id="form" action="http://localhost:3000/voting/castvote" method="post">
-                <input type="email" name="email" id="email" placeholder="email">
-                <input type="text" name="name" placeholder="full name">
-                <input type="number" name="sap" placeholder="sapID">
-                <input type="submit" value="PROCEED">
-            </form>
+
         </div>
         <img src="../public/assets/images/illus.svg" alt="illustration">
     </div>
@@ -34,7 +29,8 @@
     <script>
         function handleClick() {
             document.getElementById("btn").style.display = "none";
-            document.getElementById("form").style.display = "block";
+            location.href = "http://localhost:3000/voting/arena"
+            // document.getElementById("form").style.display = "block";
         }
     </script>
 

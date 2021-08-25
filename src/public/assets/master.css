@@ -43,7 +43,6 @@ body {
   background-color: lavender;
 }
 #form {
-  display: none;
   margin-top: 5%;
 }
 
@@ -61,10 +60,10 @@ body {
   margin: 0 auto;
 }
 
-.table-container table td{
+.table-container table td {
   border-bottom: 1px solid white;
 }
-.table-container table th{
+.table-container table th {
   border-bottom: 2px dotted whitesmoke;
-  font-size: 32px ;
+  font-size: 32px;
 }

@@ -11,50 +11,53 @@
 
 <body>
     <h1>
-        <%=title%>
+
     </h1>
     <br>
-    <%=result%>
-        <br>
-        <div class="table-container">
-            <table>
-                <tr>
-                    <th>Candidate Name</th>
-                    <th>VOTES</th>
-                    <th>Your Response</th>
-                </tr>
-                <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>Maria Anders</td>
-                    <td>Germany</td>
-                </tr>
-                <tr>
-                    <td>Centro comercial Moctezuma</td>
-                    <td>Francisco Chang</td>
-                    <td>Mexico</td>
-                </tr>
-                <tr>
-                    <td>Ernst Handel</td>
-                    <td>Roland Mendel</td>
-                    <td>Austria</td>
-                </tr>
-                <tr>
-                    <td>Island Trading</td>
-                    <td>Helen Bennett</td>
-                    <td>UK</td>
-                </tr>
-                <tr>
-                    <td>Laughing Bacchus Winecellars</td>
-                    <td>Yoshi Tannamuri</td>
-                    <td>Canada</td>
-                </tr>
-                <tr>
-                    <td>Magazzini Alimentari Riuniti</td>
-                    <td>Giovanni Rovelli</td>
-                    <td>Italy</td>
-                </tr>
-            </table>
-        </div>
+
+    <br>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Candidate Id</th>
+                <th>Candidate Name</th>
+                <th>VOTES</th>
+
+            </tr>
+
+            <tr>
+                <td>c1-0</td>
+                <td>Alfreds Futterkiste</td>
+                <td>2</td>
+
+            </tr>
+            <tr>
+                <td>c1-1</td>
+                <td>Centro comercial Moctezuma</td>
+                <td>3</td>
+
+            </tr>
+            <tr>
+                <td>c1-2</td>
+                <td>Ernst Handel</td>
+                <td>55</td>
+
+            </tr>
+
+        </table>
+        <form id="form" action="http://localhost:3000/voting/arena" method="get">
+            <input type="email" name="email" id="email" placeholder="email">
+            <input type="text" name="name" placeholder="full name">
+            <input type="number" name="sap" placeholder="sapID">
+            <select name="candidateid" id="candidateid">
+                <option value="c1-0">prsn-1</option>
+                <option value="c1-0">prsn-2</option>
+                <option value="c1-0">prsn-3</option>
+                <option value="c1-0">prsn-4 </option>
+            </select>
+            <input type="submit" value="Cast My Vote! ">
+        </form>
+    </div>
 
 </body>
 
