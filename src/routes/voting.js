@@ -42,19 +42,26 @@ router.route("/castvote").post(async (req, res) => {
       res.end();
     }
     if (rs.rows[0].status === "n") {
-      await client.execute(
-        "UPDATE test.voting SET status='v' WHERE sap=?",
-        [sap],
-        {
-          prepare: true,
-        }
-      );
+      // await client.execute(
+      //   "UPDATE test.voting SET status='v' WHERE sap=?",
+      //   [sap],
+      //   {
+      //     prepare: true,
+      //   }
+      // );
 
-      const candidates_votes = await client.execute(
-        "SELECT * from test.candidates where id =?",
-        [req.body.candidateid],
-        { prepare: true }
-      );
+      let candidates_votes = await client
+        .execute(
+          "SELECT vote from test.candidates WHERE id=?",
+          [req.body.candidateid],
+          { prepare: true }
+        )
+        .catch((error) => {
+          console.log("Cant operate ", error);
+          res.status(500).json({ error: "Cant add record: " });
+        });
+
+      console.log(candidates_votes);
 
       let update_vote = candidates_votes.rows[0].vote + 1;
 
@@ -68,16 +75,6 @@ router.route("/castvote").post(async (req, res) => {
       res.end();
     }
   }
-
-  // if (rs.rows[0].status === "v") {
-  //   res.send("You have Already Voted");
-  // }
-
-  // if (rs.rows[0].status === "n") {
-  //   res.send("YOU CAN VOTE");
-  // }
-
-  // res.send(rs.rows[0].status);
 
   res.end();
 });
