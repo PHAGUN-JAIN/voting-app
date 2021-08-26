@@ -7,9 +7,9 @@ const client = new Client({
     secureConnectBundle: "./secure-connect-test-database.zip",
   },
   credentials: {
-    username: "",
+    username: "XOPLEXSZBsLcimyWlwDeKAqg",
     password:
-      "",
+      "8ZxuqYkS8oPoHaMREKOaWQAHwppIXvDz9WP6q+hNpYSr-377p-fYnreXR-RRH-d50TL8iKnXAG28LYy14LSx4CuIl6JEuQlCI-btmgt2I,0JBb9nEZsqHUzTce,urjzn",
   },
 });
 
