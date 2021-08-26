@@ -15,7 +15,8 @@
 ## how to run the project
 1. clone the repo to system.
 2. navigate to project folder
-```shell
+
+```shell:
 npm install
 npm start
 ```
