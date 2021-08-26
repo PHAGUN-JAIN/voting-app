@@ -1,7 +1,7 @@
 # backend-with-node
 
 ## tools and tech used
-
+- AstraDB as database
 - NODEJS with express
 - Postman for api testing
 
