@@ -16,7 +16,7 @@
 1. clone the repo to system.
 2. navigate to project folder
 
-```shell:
+```bash:
 npm install
 npm start
 ```
