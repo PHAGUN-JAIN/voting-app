@@ -20,3 +20,6 @@
 npm install
 npm start
 ```
+## sneak peek :)
+<img src="https://github.com/PHAGUN-JAIN/backend-with-node/blob/main/src/public/assets/images/p1.png"/>
+<img src="https://github.com/PHAGUN-JAIN/backend-with-node/blob/main/src/public/assets/images/p2.png"/>
