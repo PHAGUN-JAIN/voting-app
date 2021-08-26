@@ -49,12 +49,6 @@
                 </td>
 
             </tr>
-            <tr>
-                <td>c1-2</td>
-                <td>Ernst Handel</td>
-                <td>55</td>
-
-            </tr>
 
         </table>
         <form id="form" action="http://localhost:3000/voting/castvote" method="post">
@@ -62,9 +56,12 @@
             <input type="text" name="name" placeholder="full name">
             <input type="number" name="sap" placeholder="sapID">
             <select name="candidateid" id="candidateid">
-                <option value="1">prsn-1</option>
-                <option value="2">prsn-2</option>
-                <option value="3">prsn-3</option>
+                <option value="1">
+                    <%=name1%>
+                </option>
+                <option value="2">
+                    <%=name2%>
+                </option>
             </select>
             <input type="submit" value="Cast My Vote! ">
         </form>
