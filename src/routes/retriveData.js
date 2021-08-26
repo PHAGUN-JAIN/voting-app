@@ -8,9 +8,9 @@ const client = new Client({
     secureConnectBundle: "./secure-connect-test-database.zip",
   },
   credentials: {
-    username: "XOPLEXSZBsLcimyWlwDeKAqg",
+    username: "",
     password:
-      "8ZxuqYkS8oPoHaMREKOaWQAHwppIXvDz9WP6q+hNpYSr-377p-fYnreXR-RRH-d50TL8iKnXAG28LYy14LSx4CuIl6JEuQlCI-btmgt2I,0JBb9nEZsqHUzTce,urjzn",
+      "",
   },
 });
 
@@ -27,7 +27,6 @@ router.route("/").get(async (req, res) => {
 
 router.route("/postdata").get((req, res) => {
   res.render("database");
-  // res.sendFile("../public/static/index.html");
 });
 
 router.route("/").post(async (req, res) => {

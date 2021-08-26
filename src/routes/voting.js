@@ -61,8 +61,6 @@ router.route("/castvote").post(async (req, res) => {
           res.status(500).json({ error: "Cant fetch " });
         });
 
-      console.log(candidates_votes);
-
       let update_vote = candidates_votes.rows[0].vote + 1;
 
       await client
@@ -88,7 +86,6 @@ router.route("/arena").get(async (req, res) => {
   await client.connect();
 
   const rs = await client.execute("SELECT * FROM test.candidates;");
-  console.log(rs.rows);
 
   res.render("votingarena", {
     vote1: rs.rows[0].vote,
