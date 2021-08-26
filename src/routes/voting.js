@@ -42,34 +42,39 @@ router.route("/castvote").post(async (req, res) => {
       res.end();
     }
     if (rs.rows[0].status === "n") {
-      // await client.execute(
-      //   "UPDATE test.voting SET status='v' WHERE sap=?",
-      //   [sap],
-      //   {
-      //     prepare: true,
-      //   }
-      // );
+      await client.execute(
+        "UPDATE test.voting SET status='v' WHERE sap=?",
+        [sap],
+        {
+          prepare: true,
+        }
+      );
 
       let candidates_votes = await client
         .execute(
-          "SELECT vote from test.candidates WHERE id=?",
+          "SELECT vote from test.candidates WHERE sap=?",
           [req.body.candidateid],
           { prepare: true }
         )
         .catch((error) => {
           console.log("Cant operate ", error);
-          res.status(500).json({ error: "Cant add record: " });
+          res.status(500).json({ error: "Cant fetch " });
         });
 
       console.log(candidates_votes);
 
       let update_vote = candidates_votes.rows[0].vote + 1;
 
-      await client.execute(
-        "UPDATE test.candidates SET votes=? WHERE id=?",
-        [update_vote, req.body.candidateid],
-        { prepare: true }
-      );
+      await client
+        .execute(
+          "UPDATE test.candidates SET vote=? WHERE sap=?",
+          [update_vote, req.body.candidateid],
+          { prepare: true }
+        )
+        .catch((error) => {
+          console.log("Cant operate ", error);
+          res.status(500).json({ error: "Cant update " });
+        });
 
       res.send("your vote has been recorded! CHEERS!!!");
       res.end();
